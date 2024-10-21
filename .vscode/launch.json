@@ -1,0 +1,17 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-MicroservdoutoradoApplication<microservdoutorado>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "br.univille.microservdoutorado.MicroservdoutoradoApplication",
+            "projectName": "microservdoutorado",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": ["-Djavax.net.ssl.trustStore=/workspaces/tapr-2024-turmaa-doutorado-java/native.jks",
+                       "-Djavax.net.ssl.trustStorePassword=univille"]
+
+        }
+    ]
+}
