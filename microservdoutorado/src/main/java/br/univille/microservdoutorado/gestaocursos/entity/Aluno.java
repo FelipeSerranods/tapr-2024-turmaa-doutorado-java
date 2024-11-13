@@ -2,52 +2,33 @@ package br.univille.microservdoutorado.gestaocursos.entity;
 
 import java.util.UUID;
 
+import org.springframework.data.annotation.Id;
+import com.azure.spring.data.cosmos.core.mapping.Container;
+import com.azure.spring.data.cosmos.core.mapping.GeneratedValue;
+import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
+
+@Container(containerName = "aluno", autoCreateContainer = true)
 public class Aluno {
+    @Id
+    @PartitionKey
+    @GeneratedValue
 
-    private UUID idMatricula;
-    private UUID idCurso;
-    private UUID idMateria;
-    private String nomeAluno;
-    private String statusMatricula;
+    private String id;
+    private String nome;
 
-    public UUID getIdMatricula() {
-        return idMatricula;
+    public String getId() {
+        return id;
     }
-
-    public void setIdMatricula(UUID idMatricula) {
-        this.idMatricula = idMatricula;
+    public void setId(String id) {
+        this.id = id;
     }
-
-    public UUID getIdCurso() {
-        return idCurso;
+    public String getNome() {
+        return nome;
     }
-
-    public void setIdCurso(UUID idCurso) {
-        this.idCurso = idCurso;
-    }
-
-    public UUID getIdMateria() {
-        return idMateria;
-    }
-
-    public void setIdMateria(UUID idMateria) {
-        this.idMateria = idMateria;
-    }
-
-    public String getNomeAluno() {
-        return nomeAluno;
-    }
-
-    public void setNome(String nomeAluno) {
-        this.nomeAluno = nomeAluno;
-    }
-
-    public String getStatusMatricula() {
-        return statusMatricula;
-    }
-
-    public void setStatusMatricula(String statusMatricula) {
-        this.statusMatricula = statusMatricula;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
 }
+
+    

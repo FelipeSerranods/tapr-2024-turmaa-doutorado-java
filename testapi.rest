@@ -1,0 +1,11 @@
+### Buscar todos os alunos
+GET http://localhost:8080//ap1/v1/alunos
+
+### Inserir um aluno
+
+POST http://localhost:8080//ap1/v1/alunos
+Content-Type: application/json
+
+{
+    "nome": "Felipe"
+}
