@@ -1,20 +1,27 @@
 package br.univille.microservdoutorado.gestaocursos.entity;
 
-import java.util.UUID;
-import java.util.Date;
+import org.springframework.data.annotation.Id;
+import com.azure.spring.data.cosmos.core.mapping.Container;
+import com.azure.spring.data.cosmos.core.mapping.GeneratedValue;
+import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
 
+@Container(containerName = "cursos", autoCreateContainer = true)
 public class Curso {
-    private UUID idCurso;
+    @Id
+    @PartitionKey
+    @GeneratedValue
+
+    private String idCurso; 
     private String nomeCurso;
     private Double custoCurso;
-    private Date duracao;
+    private Integer duracao;
     private String materia;
 
-    public UUID getIdCurso() {
+    public String getIdCurso() {
         return idCurso;
     }
 
-    public void setIdCurso(UUID idCurso) {
+    public void setIdCurso(String idCurso) {
         this.idCurso = idCurso;
     }
 
@@ -34,11 +41,11 @@ public class Curso {
         this.custoCurso = custoCurso;
     }
 
-    public Date getDuracao() {
+    public Integer getDuracao() {
         return duracao;
     }
 
-    public void setDuracao(Date duracao) {
+    public void setDuracao(Integer duracao) {
         this.duracao = duracao;
     }
 

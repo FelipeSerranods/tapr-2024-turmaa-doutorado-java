@@ -18,7 +18,7 @@ import br.univille.microservdoutorado.gestaocursos.entity.Aluno;
 import br.univille.microservdoutorado.gestaocursos.service.AlunoService;
 
 @RestController
-@RequestMapping("/ap1/v1/alunos")
+@RequestMapping("/api/v1/alunos")
 public class AlunoAPIController {
 
     @Autowired
