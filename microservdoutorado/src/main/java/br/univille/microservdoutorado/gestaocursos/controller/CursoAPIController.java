@@ -23,42 +23,54 @@ public class CursoAPIController {
     @Autowired
     private CursoService service;
 
-    @GetMapping
-    public ResponseEntity<List<Curso>> get(){
+    @GetMapping // /api/v1/cursos
+    public ResponseEntity<List<Curso>> get() {
         var listaCursos = service.getAll();
         return new ResponseEntity<List<Curso>>(listaCursos, HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<Curso> post(@RequestBody Curso curso){
-        if(curso == null){
+    @PostMapping // /api/v1/cursos
+    public ResponseEntity<Curso> post(@RequestBody Curso curso) {
+        if (curso == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         var cursoSalvo = service.save(curso);
         return new ResponseEntity<Curso>(cursoSalvo, HttpStatus.OK);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Curso> put(@PathVariable("id") String id, @RequestBody Curso curso){
-        if(curso == null || id == "" || id == null){
+    @PutMapping("/{id}") // /api/v1/cursos/{id}
+    public ResponseEntity<Curso> put(@PathVariable("id") String id, @RequestBody Curso curso) {
+        if (curso == null || id == "" || id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         curso = service.update(id, curso);
-        if(curso == null){
+        if (curso == null) {
             return new ResponseEntity<Curso>(curso, HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<Curso>(curso, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Curso> delete (@PathVariable("id") String id){
-        if(id == "" || id == null){
+    @DeleteMapping("/{id}") // /api/v1/cursos/{id}
+    public ResponseEntity<Curso> delete(@PathVariable("id") String id) {
+        if (id == "" || id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         var curso = service.delete(id);
-        if(curso == null){
+        if (curso == null) {
             return new ResponseEntity<Curso>(curso, HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<Curso>(curso, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}/materias/{materia}") // /api/v1/cursos/{id}/materias/{materia}
+    public ResponseEntity<Curso> removeMateria(@PathVariable("id") String id, @PathVariable("materia") String materia) {
+        if (id == null || id.isEmpty() || materia == null || materia.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        var cursoAtualizado = service.removeMateria(id, materia);
+        if (cursoAtualizado == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(cursoAtualizado, HttpStatus.OK);
     }
 }

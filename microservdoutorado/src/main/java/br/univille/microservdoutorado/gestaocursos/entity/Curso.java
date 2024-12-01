@@ -1,5 +1,7 @@
 package br.univille.microservdoutorado.gestaocursos.entity;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import com.azure.spring.data.cosmos.core.mapping.Container;
 import com.azure.spring.data.cosmos.core.mapping.GeneratedValue;
@@ -14,8 +16,8 @@ public class Curso {
     private String idCurso; 
     private String nomeCurso;
     private Double custoCurso;
-    private Integer duracao;
-    private String materia;
+    private int duracao;
+    private List<String> materias;
 
     public String getIdCurso() {
         return idCurso;
@@ -41,20 +43,20 @@ public class Curso {
         this.custoCurso = custoCurso;
     }
 
-    public Integer getDuracao() {
+    public int getDuracao() {
         return duracao;
     }
 
-    public void setDuracao(Integer duracao) {
+    public void setDuracao(int duracao) {
         this.duracao = duracao;
     }
 
-    public String getMateria() {
-        return materia;
+    public List<String> getMaterias() {
+        return materias; 
     }
 
-    public void setMateria(String materia) {
-        this.materia = materia;
+    public void setMaterias(List<String> materias) {
+        this.materias = materias;
     }
 
 }

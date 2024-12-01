@@ -24,42 +24,46 @@ public class AlunoAPIController {
     @Autowired
     private AlunoService service;
 
+    // Buscar todos os alunos
     @GetMapping
-    public ResponseEntity<List<Aluno>> get(){
+    public ResponseEntity<List<Aluno>> get() {
         var listaAlunos = service.getAll();
-        return new ResponseEntity<List<Aluno>>(listaAlunos, HttpStatus.OK);
+        return new ResponseEntity<>(listaAlunos, HttpStatus.OK);
     }
 
+    // Inserir um aluno
     @PostMapping
-    public ResponseEntity<Aluno> post(@RequestBody Aluno aluno){
-        if(aluno == null){
+    public ResponseEntity<Aluno> post(@RequestBody Aluno aluno) {
+        if (aluno == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         var alunoSalvo = service.save(aluno);
-        return new ResponseEntity<Aluno>(alunoSalvo, HttpStatus.OK);
+        return new ResponseEntity<>(alunoSalvo, HttpStatus.CREATED); // Retornar CREATED
     }
 
+    // Atualizar um aluno
     @PutMapping("/{id}")
-    public ResponseEntity<Aluno> put(@PathVariable("id") String id, @RequestBody Aluno aluno){
-        if(aluno == null || id == "" || id == null){
+    public ResponseEntity<Aluno> put(@PathVariable("id") String id, @RequestBody Aluno aluno) {
+        if (aluno == null || id == "" || id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         aluno = service.update(id, aluno);
-        if(aluno == null){
-            return new ResponseEntity<Aluno>(aluno, HttpStatus.NOT_FOUND);
+        if (aluno == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<Aluno>(aluno, HttpStatus.OK);
+        return new ResponseEntity<>(aluno, HttpStatus.OK);
     }
 
+    // Deletar um aluno
     @DeleteMapping("/{id}")
-    public ResponseEntity<Aluno> delete (@PathVariable("id") String id){
-        if(id == "" || id == null){
+    public ResponseEntity<Aluno> delete(@PathVariable("id") String id) {
+        if (id == "" || id == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         var aluno = service.delete(id);
-        if(aluno == null){
-            return new ResponseEntity<Aluno>(aluno, HttpStatus.NOT_FOUND);
+        if (aluno == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<Aluno>(aluno, HttpStatus.OK);
+        return new ResponseEntity<>(aluno, HttpStatus.OK);
     }
 }

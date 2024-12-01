@@ -1,11 +1,57 @@
 ### Buscar todos os alunos
-GET http://localhost:8080//ap1/v1/alunos
+GET http://localhost:8080/api/v1/alunos
 
 ### Inserir um aluno
-
-POST http://localhost:8080//ap1/v1/alunos
+POST http://localhost:8080/api/v1/alunos
 Content-Type: application/json
 
 {
     "nome": "Felipe"
 }
+
+###Atualizar um aluno
+PUT http://localhost:8080/api/v1/alunos/{id}
+Content-Type: application/json
+
+{
+    "nome": "Felipe Santos"
+}
+
+###Deletar um aluno
+DELETE http://localhost:8080/api/v1/alunos/{id}
+
+
+
+###################################################################################
+
+
+### Buscar todos os cursos
+GET http://localhost:8080/api/v1/cursos
+
+### Inserir um curso
+POST http://localhost:8080/api/v1/cursos
+Content-Type: application/json
+
+{
+    "nomeCurso": "Curso de Cozinha",
+    "custoCurso": 500.00,
+    "duracao": 10,
+    "materias": ["Lavar", "Arroz", "Feijão"]
+}
+
+### Atualizar curso
+PUT http://localhost:8080/api/v1/cursos/b4216b24-64c6-407c-9f28-348cb5dcc2e6
+Content-Type: application/json
+
+{
+    "nomeCurso": "Curso de Java Avançado",
+    "custoCurso": 700.00,
+    "duracao": 8,
+    "materias": ["Java Avançado", "Padrões de Projeto", "Design Patterns"]
+}
+
+###Deletar um curso
+DELETE http://localhost:8080/api/v1/cursos/2c25e679-c32a-4d14-a85c-a650da36f72a
+
+###Remover materia de um curso
+DELETE http://localhost:8080/api/v1/cursos/b4216b24-64c6-407c-9f28-348cb5dcc2e6/materias/Padrões de Projeto
